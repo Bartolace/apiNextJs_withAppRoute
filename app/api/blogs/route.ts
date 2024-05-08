@@ -1,9 +1,14 @@
+import { getData } from "@/lib/data"
 import { NextResponse } from "next/server"
 
 
 export async function GET(request: Request, response: NextResponse) {
-  console.log("GET RESQUEST")
-  return NextResponse.json({ sucess: 'foi bobo' }, { status: 200 })
+  try {
+    const data = getData();
+    return NextResponse.json({message:"OK", data}, {status:200});
+  } catch (err){
+    return NextResponse.json({ sucess: 'Error', err }, { status: 500 })
+  }
   
 }
 
